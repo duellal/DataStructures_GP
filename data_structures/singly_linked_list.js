@@ -22,8 +22,9 @@ class Node {
     //returns the node's next node
     get_next(){}
     
-    //set the node's next node pointer
-    set_next(){}
+    //set the node's next node pointer to the passed in node
+    set_next(node){
+    }
 }
 
 /**
