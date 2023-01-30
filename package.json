@@ -4,11 +4,14 @@
   "description": "Repo to work through as a Guided Practice with lectures",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jduell12/DataStructures_GP.git"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "keywords": [],
   "author": "",

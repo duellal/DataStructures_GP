@@ -24,17 +24,31 @@ const {SinglyLinkedList} = require('../data_structures/singly_linked_list')
 
 //implemented with array
 class Stack {
-    constructor(){}
+    constructor(){
+        this.size = 0;
+        this.storage = []
+    }
     
     //returns the length of the stack
-    len(){}
+    len(){
+        return this.size;
+    }
     
     //adds the value to the end of the stack
-    push(value){}
+    push(value){
+        this.size += 1;
+        this.storage.push(value);
+    }
     
     //removes and returns the value from the end of the 
     //stack
-    pop(){}
+    pop(){
+        if(this.size === 0){
+            return null
+        }
+        this.size -= 1;
+        return this.storage.pop();
+    }
 }
 
 //implemented with linked list
