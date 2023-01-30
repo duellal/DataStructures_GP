@@ -4,7 +4,6 @@
  *      contains  
  *      get_max
  *      get_min
- *      for_each
  *      depth_first_traversal
  *          in_order_traversal
  *          pre_order_traversal
@@ -33,36 +32,36 @@ class BinarySearchTree {
     //returns the minimum value found in the tree
     get_min(){}
     
-    // Calls the function `fn` on the value of each node
-    for_each(fn){}
-    
     /**
      * process all the left children (lesser values), then this node's value, then
      * the right children (greater values). This is the most useful for a BST as it
      * respects the intrinsic ordering of the tree; values are processed from
      * smallest to greatest.
      * 
-     * Returns the value of every node, starting with the given node,
+     * Call the function `fn` on the 
+     * value of each node 
      * 
      */
-    in_order_traversal(){}
+    in_order_traversal(fn){}
     
     /**
      * process the current node value, then go down the left branch, then the right
      * branch. This processes parents before leaves, so can be used to copy a tree.
      * 
-     * Returns the value of every node, starting with the given node,
+     * Call the function `fn` on the 
+     * value of each node 
      * 
      */
-    pre_order_traversal(){}
+    pre_order_traversal(fn){}
     
     /**
      * process all the left children, then right children, then this node's value. 
      * 
-     * Returns the value of every node, starting with the given node,
+     * Call the function `fn` on the 
+     * value of each node 
      * 
      */
-    post_order_traversal(){}
+    post_order_traversal(fn){}
     
     /**
      * start at level 0, then go through all nodes at level 1, then all nodes at 
@@ -70,9 +69,10 @@ class BinarySearchTree {
      * for example, a hierarchical org chart. It is less useful for a BST, where 
      * levels don't usually have intrinsic meaning.
      * 
-     * Returns the value of every node, starting with the given node,
+     * Call the function `fn` on the 
+     * value of each node 
      */
-    breadth_first_traversal(){}
+    breadth_first_traversal(fn){}
 }
 
-module.exports = BinarySearchTree;
+module.exports = {BinarySearchTree};
