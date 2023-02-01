@@ -10,6 +10,10 @@
 
 // function to find factorial of given number using 
 //recursion
-export const factorial = n => {
+const factorial = n => {
     
+}
+
+module.exports = {
+    factorial
 }
