@@ -35,7 +35,7 @@ class Queue{
     enqueue(value){}
     
     //removes the value from the front of the queue
-    dequeue(value){}
+    dequeue(){}
 }
 
 //implemented with a linked list
@@ -51,7 +51,7 @@ class Queue{
 //     enqueue(value){}
     
 //     //removes the value from the front of the queue
-//     dequeue(value){}
+//     dequeue(){}
 // }
 
 module.exports = {
