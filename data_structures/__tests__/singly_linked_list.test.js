@@ -162,6 +162,7 @@ describe('Singly Linked List', ()=>{
                     list.add_to_tail('first')
                     list.add_to_tail('second')
                     list.add_to_tail('third')
+
                     expect(list.remove_head()).toEqual('first')
                     expect(list.remove_head()).toEqual('second')
                     expect(list.remove_head()).toEqual('third')
