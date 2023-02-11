@@ -13,19 +13,23 @@
  */
 
 class Node {
-    constructor(){
-        
+    constructor(value){
+        this.value = value
+        this.next = null
+        this.prev = null
     }
     
     //Wrap the given value in a ListNode and insert it
     //after this node. Note that this node could already
     //have a next node it is point to.
-    insert_after(value){}
+    insert_after(value){
+    }
     
     //Wrap the given value in a ListNode and insert it
     //before this node. Note that this node could already
     //have a previous node it is point to.
-    insert_before(value){}
+    insert_before(value){
+    }
     
     //Rearranges this ListNode's previous and next pointers
     //accordingly, effectively deleting this ListNode
