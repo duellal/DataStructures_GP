@@ -46,12 +46,13 @@ class Node {
     //Rearranges this ListNode's previous and next pointers
     //accordingly, effectively deleting this ListNode
     delete(){
-        let current_node = this
-        let previous_node = this.prev
-        let next_node = this.next
-        
-        next_node.prev = current_node.prev
-        previous_node.next = current_node.next
+        if(this.prev){
+            this.prev.next = this.next
+        }
+
+        if(this.next){
+            this.next.prev = this.prev
+        }
     }
 }
 
@@ -83,16 +84,13 @@ class DoublyLinkedList {
         if(!this.tail){
             this.head = new_node
             this.tail = new_node
-            
-            return this
         }
-
-        let current_tail = this.tail
-        new_node.prev = current_tail
-        current_tail.next = new_node
-        this.tail = new_node
-
-        return this
+        else{
+            let current_tail = this.tail
+            new_node.prev = current_tail
+            current_tail.next = new_node
+            this.tail = new_node
+        }
     }
     
     //returns the value of the removed node or null if list is empty
@@ -106,12 +104,11 @@ class DoublyLinkedList {
         if(this.head === this.tail){
             this.head = null
             this.tail = null
-
-            return tail.value
         }
-
-        this.tail = tail.prev
-        this.tail.next = null
+        else{
+            this.tail = tail.prev
+            this.tail.next = null
+        }
 
         return tail.value
     }
@@ -123,17 +120,14 @@ class DoublyLinkedList {
         if(!this.head){
             this.head = new_node
             this.tail = new_node
-
-            return this
         }
+        else{
+            let current_head = this.head
 
-        let current_head = this.head
-
-        this.head = new_node
-        new_node.next = current_head
-        current_head.prev = new_node
-
-        return this
+            this.head = new_node
+            new_node.next = current_head
+            current_head.prev = new_node
+        }
     }
     
     //returns the value of the removed node or null if list is empty
@@ -147,11 +141,12 @@ class DoublyLinkedList {
         if(this.head === this.tail){
             this.head = null
             this.tail = null
-            return head.value
+        }
+        else{
+            this.head = head.next
+            this.head.prev = null
         }
 
-        this.head = head.next
-        this.head.prev = null
         return head.value
     }
     
@@ -253,35 +248,24 @@ class DoublyLinkedList {
     //removes a node from the list 
     //handles cases where the node was the head or tail
     delete(node){
-        let current_head = this.head
-        let current_tail = this.tail
-
-        if(node === current_head && node === current_tail){
+        if(node === this.head && node === this.tail){
             this.head = null
             this.tail = null
-            
-            return this
         }
-        else if(node === current_head){
+        else if(node === this.head){
             this.head = node.next
             this.head.prev = null
             node.next = null
-
-            return this
         }
         else if(node === this.tail){
             this.tail = node.prev
             this.tail.next = node.next
             node.prev = null
-
-            return this
         }
-
+        else{
         this.head.next = node.next
         this.tail.prev = node.prev
-        
-
-        return this
+        }
     }
     
 }

@@ -28,9 +28,8 @@ class Node {
     }
     
     //set the node's next node pointer to the passed in node
-    set_next(value){
-        this.next = value
-        return this.next
+    set_next(node){
+        this.next = node
     }
 }
 
@@ -118,23 +117,15 @@ class SinglyLinkedList {
         if(this.head === this.tail){
             this.head = null
             this.tail = null
-            return value
         } else {
             this.head = this.head.next
             this.head.previous = null
-            return value
         }
+        return value
     }
     
     //returns true if the list contains the value otherwise returns false
     contains(value){
-        if(!this.head){
-            return false
-        }
-        else if(this.head.value === value){
-            return true
-        }
-        else {
             let current_node = this.head
             
             while(current_node !== null){
@@ -144,7 +135,6 @@ class SinglyLinkedList {
                 current_node = current_node.next
             }
             return false
-        }
     }
     
     //returns the max value within the list
@@ -157,12 +147,13 @@ class SinglyLinkedList {
         }
         else {
             let maxNum = Number.MIN_VALUE
+            let head = this.head
             
-            while(this.head !== null){
-                if(maxNum < this.head.value){
-                    maxNum = this.head.value
+            while(head !== null){
+                if(maxNum < head.value){
+                    maxNum = head.value
                 }
-                this.head = this.head.next
+                head = head.next
             }
 
             return maxNum
