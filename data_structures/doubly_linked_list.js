@@ -74,7 +74,6 @@ class DoublyLinkedList {
     constructor(){
         this.head = null
         this.tail = null
-        this.length = 0
     }
     
     //add a new node with the given value to the tail of the list
@@ -85,7 +84,7 @@ class DoublyLinkedList {
             this.head = new_node
             this.tail = new_node
             
-            return new_node
+            return this
         }
 
         let current_tail = this.tail
@@ -93,7 +92,7 @@ class DoublyLinkedList {
         current_tail.next = new_node
         this.tail = new_node
 
-        return new_node
+        return this
     }
     
     //returns the value of the removed node or null if list is empty
@@ -125,15 +124,16 @@ class DoublyLinkedList {
             this.head = new_node
             this.tail = new_node
 
-            return new_node
+            return this
         }
 
         let current_head = this.head
+
         this.head = new_node
         new_node.next = current_head
         current_head.prev = new_node
 
-        return new_node
+        return this
     }
     
     //returns the value of the removed node or null if list is empty
@@ -165,13 +165,14 @@ class DoublyLinkedList {
         }
 
         let maxNum = Number.MIN_VALUE
+        let curr_node = this.head;
 
-        while(this.head !== null){
-            if(maxNum < this.head.value){
-                maxNum = this.head.value
+        while(curr_node !== null){
+            if(maxNum < curr_node.value){
+                maxNum = curr_node.value
             }
             
-            this.head = this.head.next
+            curr_node = curr_node.next
         }
 
         return maxNum
@@ -179,25 +180,93 @@ class DoublyLinkedList {
     
     //returns the length of the list
     len(){
+        let current_node = this.head
+        let length = 0
 
+        while(current_node !== null){
+            length += 1
+
+            current_node = current_node.next
+        }
+
+        return length
     }
     
     //removes the input node from its current spot in the 
     // List and inserts it as the new head node of the List
-    move_to_front(){
+    move_to_front(node){
+        let current_head = this.head
+        let node_prev = node.prev
+        let node_next = node.next
 
+        if(node === this.tail){
+            this.tail = node_prev
+            this.tail.next = node_next
+            this.head = node
+            node.next = current_head
+            current_head.prev = node
+
+            return this
+        }
+
+        node_prev.next = node_next
+        node_next.prev = node_prev
+        this.head = node
+        current_head.prev = node
+        node.prev = null
+        node.next = current_head
+
+        return this
     }
     
     //removes the input node from its current spot in the 
     // List and inserts it as the new tail node of the List
-    move_to_end(){
 
+    //STOPPED HERE:
+    move_to_end(node){
+        let current_tail = this.tail
+        let node_prev = node.prev
+        let node_next = node.next
+
+        if(node === this.head){
+            this.head = node_next
+            this.head.next = node_next
+            this.tail = node
+            node.next = null
+            node.prev = current_tail
+
+            return this
+        }
+
+        console.log(`node:`, node)
+        console.log(`current_tail:`, current_tail)
+        console.log(`node_prev:`, node_prev)
+        console.log(`node_next:`, node_next)
+
+
+        node_prev.next = node_next
+        node_next.prev = node_prev
+        this.tail = node
+        node.prev = current_tail
+        node.next = null
+        current_tail.next = node
+
+        console.log(`NEW NODE:`, node)
+
+        return this
     }
     
     //removes a node from the list 
     //handles cases where the node was the head or tail
-    delete(){
+    delete(node){
+        if(node === this.head){
+            return
+        }
+        else if(node === this.tail){
+            return
+        }
 
+        return
     }
     
 }

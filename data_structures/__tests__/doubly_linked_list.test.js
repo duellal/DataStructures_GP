@@ -225,13 +225,21 @@ describe("Doubly Linked List", () => {
 
       describe("get_max", () => {
         it("returns the max value within the list", () => {
+          // console.log(`TEST list 1:`, list)
+
           expect(list.get_max()).toEqual(null);
           list.add_to_head(10);
+          // console.log(`TEST list 2:`, list)
+
           expect(list.get_max()).toEqual(10);
           list.add_to_head(100);
+          // console.log(`TEST list 3:`, list.add_to_head(100))
+          // console.log(`TEST list 4:`, list.add_to_head(55))
+
+
           expect(list.get_max()).toEqual(100);
           list.add_to_head(55);
-          console.log(`TEST list:`, list)
+          console.log(`TEST list 4:`, list)
 
           expect(list.get_max()).toEqual(100);
         });
@@ -268,7 +276,7 @@ describe("Doubly Linked List", () => {
         });
       });
 
-      describe("move_to_end", () => {
+      describe.only("move_to_end", () => {
         it("removes the input node from its current spot in the list and inserts it as the new tail", () => {
           list.add_to_tail(3);
           list.add_to_head(1);
