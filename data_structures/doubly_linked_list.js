@@ -23,17 +23,36 @@ class Node {
     //after this node. Note that this node could already
     //have a next node it is point to.
     insert_after(value){
+        let new_node = new Node(value)
+        let current_node = this
+
+        new_node.prev = current_node
+        new_node.next = current_node.next
+        current_node.next = new_node
     }
     
     //Wrap the given value in a ListNode and insert it
     //before this node. Note that this node could already
     //have a previous node it is point to.
     insert_before(value){
+        let new_node = new Node(value)
+        let current_node = this
+
+        new_node.prev = current_node.prev
+        new_node.next = current_node
+        current_node.prev = new_node
     }
     
     //Rearranges this ListNode's previous and next pointers
     //accordingly, effectively deleting this ListNode
-    delete(){}
+    delete(){
+        let current_node = this
+        let previous_node = this.prev
+        let next_node = this.next
+        
+        next_node.prev = current_node.prev
+        previous_node.next = current_node.next
+    }
 }
 
 /**
@@ -52,7 +71,11 @@ class Node {
  */
 
 class DoublyLinkedList {
-    constructor(){}
+    constructor(){
+        this.head = null
+        this.tail = null
+        this.length = 0
+    }
     
     //add a new node with the given value to the tail of the list
     add_to_tail(value){}
