@@ -225,24 +225,20 @@ class DoublyLinkedList {
     //STOPPED HERE:
     move_to_end(node){
         let current_tail = this.tail
-        let node_prev = node.prev
-        let node_next = node.next
 
         if(node === this.head){
-            this.head = node_next
-            this.head.next = node_next
+            this.head = this.head.next
+            this.head.next = node
+            this.head.prev = null
             this.tail = node
+            this.tail.prev = current_tail
             node.next = null
-            node.prev = current_tail
 
             return this
         }
 
-        console.log(`node:`, node)
-        console.log(`current_tail:`, current_tail)
-        console.log(`node_prev:`, node_prev)
-        console.log(`node_next:`, node_next)
-
+        let node_prev = node.prev
+        let node_next = node.next
 
         node_prev.next = node_next
         node_next.prev = node_prev
@@ -251,22 +247,41 @@ class DoublyLinkedList {
         node.next = null
         current_tail.next = node
 
-        console.log(`NEW NODE:`, node)
-
         return this
     }
     
     //removes a node from the list 
     //handles cases where the node was the head or tail
     delete(node){
-        if(node === this.head){
-            return
+        let current_head = this.head
+        let current_tail = this.tail
+
+        if(node === current_head && node === current_tail){
+            this.head = null
+            this.tail = null
+            
+            return this
+        }
+        else if(node === current_head){
+            this.head = node.next
+            this.head.prev = null
+            node.next = null
+
+            return this
         }
         else if(node === this.tail){
-            return
+            this.tail = node.prev
+            this.tail.next = node.next
+            node.prev = null
+
+            return this
         }
 
-        return
+        this.head.next = node.next
+        this.tail.prev = node.prev
+        
+
+        return this
     }
     
 }
