@@ -10,8 +10,12 @@
 
 // function to find factorial of given number using 
 //recursion
-const factorial = n => {
-    
+const factorial = n => { 
+    if(n === 0 || n ===1){
+        return 1
+    }
+
+    return n * factorial(n-1)
 }
 
 module.exports = {
