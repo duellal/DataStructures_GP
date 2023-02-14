@@ -170,6 +170,7 @@ describe("Doubly Linked List", () => {
           list.add_to_tail("first");
           list.add_to_tail("second");
           list.add_to_tail("third");
+
           expect(list.remove_head()).toEqual("first");
           expect(list.remove_head()).toEqual("second");
           expect(list.remove_head()).toEqual("third");
@@ -230,6 +231,8 @@ describe("Doubly Linked List", () => {
           list.add_to_head(100);
           expect(list.get_max()).toEqual(100);
           list.add_to_head(55);
+          console.log(`TEST list:`, list)
+
           expect(list.get_max()).toEqual(100);
         });
       });

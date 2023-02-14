@@ -78,34 +78,127 @@ class DoublyLinkedList {
     }
     
     //add a new node with the given value to the tail of the list
-    add_to_tail(value){}
+    add_to_tail(value){
+        let new_node = new Node(value)
+
+        if(!this.tail){
+            this.head = new_node
+            this.tail = new_node
+            
+            return new_node
+        }
+
+        let current_tail = this.tail
+        new_node.prev = current_tail
+        current_tail.next = new_node
+        this.tail = new_node
+
+        return new_node
+    }
     
     //returns the value of the removed node or null if list is empty
-    remove_tail(){}
+    remove_tail(){
+        if(!this.tail){
+            return null
+        }
+
+        let tail = this.tail
+
+        if(this.head === this.tail){
+            this.head = null
+            this.tail = null
+
+            return tail.value
+        }
+
+        this.tail = tail.prev
+        this.tail.next = null
+
+        return tail.value
+    }
     
     //add a new node with the given value to the head of the list
-    add_to_head(value){}
+    add_to_head(value){
+        let new_node = new Node(value)
+
+        if(!this.head){
+            this.head = new_node
+            this.tail = new_node
+
+            return new_node
+        }
+
+        let current_head = this.head
+        this.head = new_node
+        new_node.next = current_head
+        current_head.prev = new_node
+
+        return new_node
+    }
     
     //returns the value of the removed node or null if list is empty
-    remove_head() {}
+    remove_head() {
+        if(!this.head){
+            return null
+        }
+
+        let head = this.head
+
+        if(this.head === this.tail){
+            this.head = null
+            this.tail = null
+            return head.value
+        }
+
+        this.head = head.next
+        this.head.prev = null
+        return head.value
+    }
     
     //returns the max value within the list
-    get_max(){}
+    get_max(){
+        if(!this.head){
+            return null
+        }
+        else if(this.head === this.tail){
+            return this.head.value
+        }
+
+        let maxNum = Number.MIN_VALUE
+
+        while(this.head !== null){
+            if(maxNum < this.head.value){
+                maxNum = this.head.value
+            }
+            
+            this.head = this.head.next
+        }
+
+        return maxNum
+    }
     
     //returns the length of the list
-    len(){}
+    len(){
+
+    }
     
     //removes the input node from its current spot in the 
     // List and inserts it as the new head node of the List
-    move_to_front(){}
+    move_to_front(){
+
+    }
     
     //removes the input node from its current spot in the 
     // List and inserts it as the new tail node of the List
-    move_to_end(){}
+    move_to_end(){
+
+    }
     
     //removes a node from the list 
     //handles cases where the node was the head or tail
-    delete(){}
+    delete(){
+
+    }
     
 }
 
