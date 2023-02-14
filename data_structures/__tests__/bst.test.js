@@ -27,10 +27,11 @@ describe('Binary Search Tree', ()=>{
         expect(typeof tree.breadth_first_traversal).toEqual('function')
     })
     
-    describe('insert method', ()=>{
+    describe.only('insert method', ()=>{
         it('makes nodes on the correct branches, without overwriting existing nodes',()=>{
             tree.insert(12)
             tree.insert(22)
+            console.log(`TEST:`, tree)
             expect(tree.value).toEqual(20);
             expect(tree.left.value).toEqual(12);
             expect(tree.right.value).toEqual(22);

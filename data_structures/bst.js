@@ -12,13 +12,30 @@
  */
 
 class BinarySearchTree {
-    constructor(){
-        
+    constructor(value){
+        this.value = value
+        this.right = null
+        this.left = null
     }
     
     //insert the given value into the tree
     insert(value){
-        
+        let new_leaf = new BinarySearchTree(value)
+
+        //NEED TO MAKE SURE THERE IS A RECURSION FOR MORE THAN 2 LEAFS ADDED:
+
+        //leaf to left:
+        if(this.value > new_leaf.value){
+            this.left = new_leaf
+            return this
+        }
+        //leaf to right:
+        else if(this.value < new_leaf.value){
+            this.right = new_leaf
+            return this
+        }
+        //if leaf/root is already taken:
+        return this
     }
     
     //returns true if the tree contains the value otherwise it returns false
