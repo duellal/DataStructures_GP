@@ -24,19 +24,38 @@ class BinarySearchTree {
 
         //NEED TO MAKE SURE THERE IS A RECURSION FOR MORE THAN 2 LEAFS ADDED:
 
-        //leaf to left:
-        if(this.value > new_leaf.value){
-            this.left = new_leaf
-            return this
+        if(this === null){ 
+            return new_leaf
         }
-        //leaf to right:
-        else if(this.value < new_leaf.value){
-            this.right = new_leaf
-            return this
+        else{
+            this.insertLeaf(this, new_leaf)
         }
-        //if leaf/root is already taken:
+        console.log(this)
         return this
     }
+
+    insertLeaf(tree, newLeaf){
+        console.log(`TREE:`, tree)
+        console.log(`NEWLEAF:`, newLeaf)
+        if(newLeaf.value < tree.value){
+            if(tree.left === null){
+                tree.left = newLeaf
+            }
+            else{
+                this.insertLeaf(tree.left, newLeaf)
+            }
+        }
+        else{
+            if(tree.right === null){
+                tree.right = newLeaf
+            }
+            else{
+                this.insertLeaf(tree.right, newLeaf)
+            }
+        }
+    }
+
+    
     
     //returns true if the tree contains the value otherwise it returns false
     contains(value){
