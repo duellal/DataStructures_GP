@@ -30,13 +30,10 @@ class BinarySearchTree {
         else{
             this.insertLeaf(this, new_leaf)
         }
-        console.log(this)
         return this
     }
 
     insertLeaf(tree, newLeaf){
-        console.log(`TREE:`, tree)
-        console.log(`NEWLEAF:`, newLeaf)
         if(newLeaf.value < tree.value){
             if(tree.left === null){
                 tree.left = newLeaf
@@ -59,14 +56,63 @@ class BinarySearchTree {
     
     //returns true if the tree contains the value otherwise it returns false
     contains(value){
-        
+        let current_leaf = this
+
+        while(current_leaf !== null){
+            if(current_leaf.value === value){
+                return true
+            }
+            else if(value < current_leaf.value){
+                current_leaf = current_leaf.left
+            }
+            else{
+                current_leaf = current_leaf.right
+            }
+        }
+        return false
     }
     
     //returns the maximum value found in the tree
-    get_max(){}
+    get_max(){
+        if(!this){
+            return null
+        }
+        else if(this.left === null && this.right === null){
+            return this.value
+        }
+        
+        let max_num = Number.MIN_VALUE
+        let current_leaf = this
+
+        while(current_leaf !== null){
+            if(current_leaf.value > max_num){
+                max_num = current_leaf.value
+            }
+                current_leaf = current_leaf.right
+        }
+        return max_num
+    }
     
     //returns the minimum value found in the tree
-    get_min(){}
+    get_min(){
+        if(!this){
+            return null
+        }
+        else if(this.left === null && this.right === null){
+            return this.value
+        }
+        
+        let max_num = Number.MAX_VALUE
+        let current_leaf = this
+
+        while(current_leaf !== null){
+            if(current_leaf.value < max_num){
+                max_num = current_leaf.value
+            }
+                current_leaf = current_leaf.left
+        }
+        return max_num
+    }
     
     /**
      * process all the left children (lesser values), then this node's value, then

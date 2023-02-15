@@ -48,7 +48,7 @@ describe('Binary Search Tree', ()=>{
         })
     })
         
-    describe.only('contains method', ()=>{
+    describe('contains method', ()=>{
         it("returns true if passed a value that exists in the tree", () => {
             valuesToInsert.forEach((value) => {
               tree.insert(value);
@@ -76,6 +76,7 @@ describe('Binary Search Tree', ()=>{
               tree.insert(value);
             });
             
+            console.log(`TEST:`, tree.get_max())
             expect(tree.get_max()).toEqual(50)
           });
     })
