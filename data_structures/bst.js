@@ -124,7 +124,16 @@ class BinarySearchTree {
      * value of each node 
      * 
      */
-    in_order_traversal(fn){}
+    in_order_traversal(fn){
+        if(this.left){
+            this.left.in_order_traversal(fn)
+        }
+        fn(this.value)
+
+        if(this.right){
+            this.right.in_order_traversal(fn)
+        }
+    }
     
     /**
      * process the current node value, then go down the left branch, then the right
@@ -134,7 +143,17 @@ class BinarySearchTree {
      * value of each node 
      * 
      */
-    pre_order_traversal(fn){}
+    pre_order_traversal(fn){
+        fn(this.value)
+
+        if(this.left){
+            this.left.pre_order_traversal(fn)
+        }
+
+        if(this.right){
+            this.right.pre_order_traversal(fn)
+        }
+    }
     
     /**
      * process all the left children, then right children, then this node's value. 
@@ -143,7 +162,17 @@ class BinarySearchTree {
      * value of each node 
      * 
      */
-    post_order_traversal(fn){}
+    post_order_traversal(fn){
+        if(this.left){
+            this.left.post_order_traversal(fn)
+        }
+
+        if(this.right){
+            this.right.post_order_traversal(fn)
+        }
+
+        fn(this.value)
+    }
     
     /**
      * start at level 0, then go through all nodes at level 1, then all nodes at 
@@ -154,7 +183,25 @@ class BinarySearchTree {
      * Call the function `fn` on the 
      * value of each node 
      */
-    breadth_first_traversal(fn){}
+    breadth_first_traversal(fn){
+        let q = []
+
+        q.push(this)
+
+        while(q.length > 0){
+            let current_leaf = q.shift()
+
+            if(current_leaf.left){
+                q.push(current_leaf.left)
+            }
+            if(current_leaf.right){
+                q.push(current_leaf.right)
+            }
+
+            fn(current_leaf.value)
+        }
+
+    }
 }
 
 module.exports = {BinarySearchTree};

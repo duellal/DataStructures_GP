@@ -133,6 +133,8 @@ describe('Binary Search Tree', ()=>{
                 tree.breadth_first_traversal(el => {
                     testArr.push(el)
                 })
+                console.log(`TEST:`, testArr)
+            
                 expect(testArr).toEqual([ 20, 15, 25, 5, 17, 21, 28, 0, 14, 50, 1, 13, 45, 12, 30, 11, 35, 33, 31,
                     34,])
             })
