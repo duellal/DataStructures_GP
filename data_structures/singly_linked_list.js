@@ -73,7 +73,6 @@ class SinglyLinkedList {
         }
 
         let value = this.tail.value
-        let head = this.head
 
         if(this.tail === this.head){
             this.head = null
@@ -81,14 +80,14 @@ class SinglyLinkedList {
             return value
         }
 
-        while(this.head.next.next !== null){
-            this.head = this.head.next
+        let current_node = this.head
+
+        while(current_node.get_next().get_next() !== null){
+            current_node = current_node.get_next()
         }
         
-       this.tail = this.head
+       this.tail = current_node
        this.tail.next = null
-       this.head = head
-       this.head.next = head.next
 
         return value
     }
