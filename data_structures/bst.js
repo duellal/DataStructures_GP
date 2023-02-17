@@ -81,16 +81,11 @@ class BinarySearchTree {
             return this.value
         }
         
-        let max_num = Number.MIN_VALUE
-        let current_leaf = this
-
-        while(current_leaf !== null){
-            if(current_leaf.value > max_num){
-                max_num = current_leaf.value
-            }
-                current_leaf = current_leaf.right
+        let max_value = this
+        while(max_value.right){
+            max_value = max_value.right
         }
-        return max_num
+        return max_value.value
     }
     
     //returns the minimum value found in the tree
@@ -102,16 +97,11 @@ class BinarySearchTree {
             return this.value
         }
         
-        let max_num = Number.MAX_VALUE
-        let current_leaf = this
-
-        while(current_leaf !== null){
-            if(current_leaf.value < max_num){
-                max_num = current_leaf.value
-            }
-                current_leaf = current_leaf.left
-        }
-        return max_num
+        let min_value = this
+         while(min_value.left){
+            min_value = min_value.left
+         }
+        return min_value.value
     }
     
     /**
