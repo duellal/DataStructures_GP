@@ -12,20 +12,27 @@
  */
 
 class Node {
-    constructor(){
-        
+    constructor(value){
+        this.value = value
+        this.next = null
     }
     
     //returns the node's value
-    get_value(){}
+    get_value(){
+        return this.value
+    }
     
     //returns the node's next node
-    get_next(){}
+    get_next(){
+        return this.next
+    }
     
     //set the node's next node pointer to the passed in node
     set_next(node){
+        this.next = node
     }
 }
+
 
 /**
  * each node points to the `next` node
@@ -40,27 +47,117 @@ class Node {
  */
 
 class SinglyLinkedList {
-    constructor(){}
+    constructor(){
+        this.head = null
+        this.tail = null 
+    }
     
     //add a new node with the given value to the tail of the list
     add_to_tail(value){
-        
+        const new_node = new Node(value)
+
+        if(!this.head){
+            this.head = new_node
+            this.tail = new_node
+        }
+        else {
+            this.tail.next = new_node
+            this.tail = new_node
+        }
     }
     
     //returns the value of the removed node or null if list is empty
-    remove_tail(){}
+    remove_tail(){
+        if(!this.tail){
+            return null
+        }
+
+        let value = this.tail.value
+
+        if(this.tail === this.head){
+            this.head = null
+            this.tail = null
+            return value
+        }
+
+        let current_node = this.head
+
+        while(current_node.get_next().get_next() !== null){
+            current_node = current_node.get_next()
+        }
+        
+       this.tail = current_node
+       this.tail.next = null
+
+        return value
+    }
     
     //add a new node with the given value to the head of the list
-    add_to_head(value){}
+    add_to_head(value){
+        const new_node = new Node(value)
+
+        if(!this.head){
+            this.head = new_node
+            this.tail = new_node
+        } else{
+            new_node.next = this.head
+            this.head = new_node
+        }
+    }
     
     //returns the value of the removed node or null if list is empty
-    remove_head() {}
+    remove_head() {
+        if(!this.head){
+            return null
+        }
+
+        let value = this.head.value
+
+        if(this.head === this.tail){
+            this.head = null
+            this.tail = null
+        } else {
+            this.head = this.head.next
+            this.head.previous = null
+        }
+        return value
+    }
     
     //returns true if the list contains the value otherwise returns false
-    contains(value){}
+    contains(value){
+            let current_node = this.head
+            
+            while(current_node !== null){
+                if(current_node.value === value){
+                    return true
+                }
+                current_node = current_node.next
+            }
+            return false
+    }
     
     //returns the max value within the list
-    get_max(){}
+    get_max(){
+        if(!this.head){
+            return null
+        }
+        else if(this.head === this.tail){
+            return this.head.value
+        }
+        else {
+            let maxNum = Number.MIN_VALUE
+            let head = this.head
+            
+            while(head !== null){
+                if(maxNum < head.value){
+                    maxNum = head.value
+                }
+                head = head.next
+            }
+
+            return maxNum
+        }
+    }
     
 }
 

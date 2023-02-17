@@ -79,7 +79,7 @@ describe('Singly Linked List', ()=>{
             
             })
             
-            describe('remove_tail', ()=>{
+            describe.only('remove_tail', ()=>{
                 it('should return the `value` of the removed tail node', () => {
                     list.add_to_tail('first')
                     list.add_to_tail('second')
@@ -107,7 +107,9 @@ describe('Singly Linked List', ()=>{
                     list.add_to_tail('second')
                     list.add_to_tail('third')
             
+                    console.log(`LIST.tail:`, list.tail)
                     list.remove_tail()
+                    console.log(`LIST.tail 2:`, list.tail)
                     expect(list.tail.value).toEqual('second')
                     expect(list.tail.next).toEqual(null)
             
@@ -162,6 +164,7 @@ describe('Singly Linked List', ()=>{
                     list.add_to_tail('first')
                     list.add_to_tail('second')
                     list.add_to_tail('third')
+
                     expect(list.remove_head()).toEqual('first')
                     expect(list.remove_head()).toEqual('second')
                     expect(list.remove_head()).toEqual('third')

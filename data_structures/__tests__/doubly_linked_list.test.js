@@ -170,6 +170,7 @@ describe("Doubly Linked List", () => {
           list.add_to_tail("first");
           list.add_to_tail("second");
           list.add_to_tail("third");
+
           expect(list.remove_head()).toEqual("first");
           expect(list.remove_head()).toEqual("second");
           expect(list.remove_head()).toEqual("third");
@@ -276,6 +277,7 @@ describe("Doubly Linked List", () => {
           expect(list.head.value).toEqual(3);
           expect(list.tail.value).toEqual(1);
 
+
           list.add_to_tail(29);
           list.move_to_end(list.head.next);
           expect(list.tail.value).toEqual(1);
@@ -307,6 +309,32 @@ describe("Doubly Linked List", () => {
           expect(list.head.value).toEqual(6);
           expect(list.tail.value).toEqual(6);
           expect(list.len()).toBe(1);
+        });
+        it("removes a node from the tail with multiple nodes", () => {
+          list.add_to_tail(1);
+          list.add_to_head(9);
+          list.add_to_tail(6);
+
+          list.delete(list.tail);
+          expect(list.head.value).toEqual(9);
+          expect(list.tail.value).toEqual(1);
+          expect(list.len()).toBe(2);
+
+          list.delete(list.tail);
+          expect(list.head.value).toEqual(9);
+          expect(list.tail.value).toEqual(9);
+          expect(list.len()).toBe(1);
+        });
+        it("removes a node from the middle with multiple nodes", () => {
+          list.add_to_tail(1);
+          list.add_to_head(9);
+          list.add_to_tail(6);
+
+          list.delete(list.head.next);
+          expect(list.head.value).toEqual(9);
+          expect(list.tail.value).toEqual(6);
+          expect(list.len()).toBe(2);
+
         });
       });
     });
